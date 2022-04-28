@@ -1,4 +1,7 @@
-﻿using System;
+﻿using lab3_mvc.injection;
+using Ninject;
+using Ninject.Web.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +16,9 @@ namespace lab3_mvc
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            var kernel = new StandardKernel(new NIConfig());
+            DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using lab3_mvc.Models;
+﻿using Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +10,18 @@ namespace lab3_mvc.Controllers
 {
     public class DictController : Controller
     {
+        IPhoneDictionary<DictRecord> phoneDictionary;
+
+        public DictController(IPhoneDictionary<DictRecord> phoneDictionary)
+        {
+            this.phoneDictionary = phoneDictionary;
+        }
+
         [HttpGet]
         public ActionResult Index()
         {
-            DB db = new DB();            
-            ViewBag.dicts = db.GetAll();
+            //DB db = new DB();            
+            ViewBag.dicts = phoneDictionary.GetAll();
             return View();
         }
 
@@ -28,8 +35,7 @@ namespace lab3_mvc.Controllers
         [HttpPost]
         public ActionResult AddSave(string lastName, string number)
         {
-            DB db = new DB();
-            db.AddRecord(lastName, number);
+            phoneDictionary.AddRecord(new DictRecord(lastName, number));
             return Redirect("/Dict/Index");
         }
 
@@ -44,8 +50,9 @@ namespace lab3_mvc.Controllers
         }
         public ActionResult UpdateSave(int id, string lastName, string number)
         {
-            DB db = new DB();
-            db.Update(id, lastName, number);
+            DictRecord dictRecord = phoneDictionary.Find(id);
+            phoneDictionary.UpdateRecord(dictRecord, lastName, number);
+            //db.Update(id, lastName, number);
             return Redirect("/Dict/Index");
         }
 
@@ -60,8 +67,8 @@ namespace lab3_mvc.Controllers
         }
         public ActionResult DeleteSave(int id)
         {
-            DB db = new DB();
-            db.Delete(id);
+            phoneDictionary.DeleteElement(id);
+            //db.Delete(id);
             return Redirect("/Dict/Index");
         }
 
