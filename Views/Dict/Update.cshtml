@@ -1,38 +1,33 @@
-﻿
+﻿@using lab3_mvc.Views.Shared.Helpers;
+    
 @using Storage;
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
     DictRecord record = ViewBag.record;
 }
 
-<!DOCTYPE html>
+@section header {
+    <header>
+        <h4>UPDATE HEADER</h4>
+    </header>
+}
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-        <label>Update</label>
-        @using (Html.BeginForm("UpdateSave", "Dict", FormMethod.Post))
-        {
-            <label>Id:</label>
-            @Html.TextBox("Id", record.Id)
-            <br />
+<div>
+    <label>Update</label>
+    @using (Html.BeginForm("UpdateSave", "Dict", FormMethod.Post))
+    {
+        <label>Id:</label>
+        @Html.TextBox("Id", record.Id)
+        <br />
 
-            <label>LastName:</label>
-            @Html.TextBox("LastName", record.LastName)
-            <br />
+        @FormHelper.AddForm(Html);
+    }
 
-            <label>Number:</label>
-            @Html.TextBox("Number", record.Number)
-            <br />
+    @Html.ActionLink("Cancel", "Index", "Dict")
+</div>
 
-            <input type="submit" value="Отправить" />
-        }
-
-        @Html.ActionLink("Cancel", "Index", "Dict")
-    </div>
-</body>
-</html>
+@section footer {
+    <footer>
+        <h4>UPDATE FOOTER</h4>
+    </footer>
+}

@@ -1,31 +1,28 @@
-﻿@{
-    Layout = null;
+﻿@using lab3_mvc.Views.Shared.Helpers;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
+@section header {
+    <header>
+        <h4>ADD HEADER</h4>
+    </header>    
+}
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Add</title>
-</head>
-<body>
-    <div>
-        @using (Html.BeginForm("AddSave", "Dict", FormMethod.Post, new { data_formType = "user" }))
-        {
-            <label>LastName:</label>
-            @Html.TextBox("LastName")
-            <br />
+<div>
+    @using (Html.BeginForm("AddSave", "Dict", FormMethod.Post, new { data_formType = "user" }))
+    {
+        @FormHelper.AddForm(Html);
+    }
+</div>
+<br>
 
-            <label>Number:</label>
-            @Html.TextBox("Number")
-            <br />
+@Html.ActionLink("Cancel", "Index", "Dict")
 
-            <input type="submit" value="Отправить" />
-        }
-    </div>
-    <br>
+@section footer {
+    <footer>
+        <h4>ADD FOOTER</h4>
+    </footer>    
+}
 
-    @Html.ActionLink("Cancel", "Index", "Dict")
-</body>
-</html>

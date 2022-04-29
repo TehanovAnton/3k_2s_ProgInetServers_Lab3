@@ -1,0 +1,11 @@
+﻿@using Storage
+
+@model  DictRecord
+
+@Model.LastName: @Model.Number
+
+@Html.ActionLink("Delete", "Delete", "Dict",
+                 routeValues: new { id = @Model.Id }, htmlAttributes: null),
+
+@Html.ActionLink("Update", "Update", "Dict",
+                 routeValues: new { id = @Model.Id }, htmlAttributes: null)

@@ -1,37 +1,41 @@
 ﻿@using Storage;
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
     DictRecord record = ViewBag.record;
 }
 
-<!DOCTYPE html>
+@section header
+{
+    <header>
+        <h4>DELETE HEADER</h4>
+    </header>
+}
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-        <label>Delete</label>
-        @using (Html.BeginForm("DeleteSave", "Dict", FormMethod.Post))
-        {
-            <label>Id:</label>
-            @Html.TextBox("Id", record.Id)
-            <br />
+<div>
+    <label>Delete</label>
+    @using (Html.BeginForm("DeleteSave", "Dict", FormMethod.Post))
+    {
+        <label>Id:</label>
+        @Html.TextBox("Id", record.Id)
+        <br />
 
-            <label>LastName:</label>
-            @Html.TextBox("LastName", record.LastName)
-            <br />
+        <label>LastName:</label>
+        @Html.TextBox("LastName", record.LastName)
+        <br />
 
-            <label>Number:</label>
-            @Html.TextBox("Number", record.Number)
-            <br />
+        <label>Number:</label>
+        @Html.TextBox("Number", record.Number)
+        <br />
 
-            <input type="submit" value="Отправить" />
-        }
+        <input type="submit" value="Отправить" />
+    }
 
-        @Html.ActionLink("Cancel", "Index", "Dict")
-    </div>
-</body>
-</html>
+    @Html.ActionLink("Cancel", "Index", "Dict")
+</div>
+
+@section footer
+{
+    <footer>
+        <h4>DELETE FOOTER</h4>
+    </footer>
+}

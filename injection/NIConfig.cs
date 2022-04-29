@@ -19,10 +19,10 @@ namespace lab3_mvc.injection
             //Bind<IPhoneDictionary<DictRecord>>().To<DB>().InThreadScope();            
 
             //  InRequestScope - для одного HTTP один объект
-            Bind<IPhoneDictionary<DictRecord>>().To<DB>().InRequestScope();            
+            //Bind<IPhoneDictionary<DictRecord>>().To<DB>().InRequestScope();
 
-            //Bind<IElementsDictionary<Telephone>>().To<TelephoneStorageEF>().InRequestScope();
             //  InRequestScope - для одного HTTP один объект
+            Bind<IPhoneDictionary<DictRecord>>().To<DB>().InRequestScope();
         }
     }
 }

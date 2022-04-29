@@ -1,34 +1,35 @@
 ﻿@using Storage;
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
     List<DictRecord> dictRecords = ViewBag.dicts;
 }
 
-<!DOCTYPE html>
+@section header
+{
+    <header>
+        <h4>INDEX HEADER</h4>
+    </header>
+}
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div>
-        <h1>Records</h1>
-        <ul>
-            @foreach (DictRecord record in dictRecords)
-            {
-                <li>
-                    @record.LastName: @record.Number
+<div>
+    <h1>Records</h1>
+    <ul>
+        @foreach (DictRecord record in dictRecords)
+        {
+            <li>
+                Html.RenderPartial("DictRecordPartial", record);
+            </li>           
+        }
+    </ul>
 
-                    @Html.ActionLink("Delete", "Delete", "Dict",
-                                     routeValues: new { id = record.Id }, htmlAttributes: null),
-                    @Html.ActionLink("Update", "Update", "Dict",
-                                     routeValues: new { id = record.Id }, htmlAttributes: null)
-                </li>
-            }
-        </ul>
+    @Html.ActionLink("Add", "Add", "Dict")
+</div>
 
-        @Html.ActionLink("Add", "Add", "Dict")
-    </div>
-</body>
-</html>
+@section footer
+{
+    <footer>
+        <h4>INDEX FOOTER</h4>
+    </footer>
+}
+
